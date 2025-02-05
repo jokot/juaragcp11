@@ -1,0 +1,18 @@
+0. Create credential
+
+1. Create synthetic speech from text using the Text-to-Speech API 
+python tts_decode.py --input "synthesize-text.txt" --output "synthesize-text-audio.mp3"
+
+2. Perform speech to text transcription with the Cloud Speech API
+curl -s -X POST -H "Content-Type: application/json" --data-binary @speech_request.json "https://speech.googleapis.com/v1/speech:recognize?key=${API_KEY}" > speech_response_fr.json
+
+3. Translate text with the Cloud Translation API
+TEXT="これは日本語です"
+curl "https://translation.googleapis.com/language/translate/v2?target=en&key=${API_KEY}" -d "q=${TEXT}" \
+  > translation_response.txt
+
+4. Detect a language with the Cloud Translation API
+TEXT_ONE="Este%é%japonês."
+curl -X POST "https://translation.googleapis.com/language/translate/v2/detect?key=${API_KEY}" -d "q=${TEXT_ONE}" \
+  > detection_response.txt
+
