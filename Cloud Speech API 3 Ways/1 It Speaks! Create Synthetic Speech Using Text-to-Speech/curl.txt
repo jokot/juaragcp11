@@ -1,0 +1,28 @@
+1. The following curl command gets the list of all the voices you can select from when creating synthetic speech using the Text-to-Speech API:
+curl -H "Authorization: Bearer "$(gcloud auth application-default print-access-token) \
+    -H "Content-Type: application/json; charset=utf-8" \
+    "https://texttospeech.googleapis.com/v1/voices"
+
+2. To scope the results returned from the API to just a single language code, run:
+curl -H "Authorization: Bearer "$(gcloud auth application-default print-access-token) \
+    -H "Content-Type: application/json; charset=utf-8" \
+    "https://texttospeech.googleapis.com/v1/voices?language_code=en"
+
+3. Use the following code to call the Text-to-Speech API using the curl command:
+curl -H "Authorization: Bearer "$(gcloud auth application-default print-access-token) \
+  -H "Content-Type: application/json; charset=utf-8" \
+  -d @synthesize-text.json "https://texttospeech.googleapis.com/v1/text:synthesize" \
+  > synthesize-text.txt
+
+4. In Cloud Shell use the following code to call the Text-to-Speech API, which saves the output to a file called synthesize-ssml.txt:
+curl -H "Authorization: Bearer "$(gcloud auth application-default print-access-token) \
+  -H "Content-Type: application/json; charset=utf-8" \
+  -d @synthesize-ssml.json "https://texttospeech.googleapis.com/v1/text:synthesize" \
+  > synthesize-ssml.txt
+
+5. Use the following code to call the Text-to-Speech API using the curl command:
+curl -H "Authorization: Bearer "$(gcloud auth application-default print-access-token) \
+  -H "Content-Type: application/json; charset=utf-8" \
+  -d @synthesize-with-settings.json "https://texttospeech.googleapis.com/v1beta1/text:synthesize" \
+  > synthesize-with-settings.txt
+
